@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal MAT216 study dashboard with progress tracking, export/import, and coverage monitor.">
+    <title>MAT216 Prep Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --block-bg: #282828;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b3b3b3;
+            --header-color: #ffffff;
+            --border-color: #333333;
+            --accent-primary: #6a82fb;
+            --accent-green: #1db954;
+            --accent-gold: #f9d56e;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            padding: 30px;
+            border-radius: 16px;
+        }
+        .header-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .header-title h1 { font-size: 2.5em; margin: 0; color: var(--header-color); }
+        .header-title p { margin: 5px 0 0; color: var(--text-secondary); font-size: 1.1em; }
+        .monitor-section { background-color: var(--block-bg); padding: 15px; border-radius: 12px; min-width: 320px; }
+        .monitor-section h3 { margin: 0 0 10px; font-size: 1.1em; text-align: center; color: var(--text-secondary); }
+        .monitor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+        .question-status { background-color: #333; padding: 6px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9em; transition: all 0.3s ease; }
+        .status-indicator { font-weight: bold; }
+        .status-covered { background-color: var(--accent-green); color: white; box-shadow: 0 0 10px rgba(29, 185, 84, 0.4); }
+        .status-not-covered { background-color: #444; color: #aaa; }
+
+        #progress-container { width: 100%; background-color: #333; border-radius: 10px; margin: 30px 0; overflow: hidden;}
+        #progress-bar { width: 0%; height: 32px; background: linear-gradient(90deg, var(--accent-primary), #a361fe); text-align: center; line-height: 32px; color: white; border-radius: 10px; transition: width 0.5s ease-in-out; font-weight: bold; font-size: 1.1em; }
+        
+        .study-block { background-color: var(--block-bg); padding: 25px; border-radius: 12px; margin-bottom: 25px; }
+        .study-block h2 { font-size: 1.8em; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+        .study-block h3 { font-size: 1.3em; margin: 25px 0 15px; color: var(--accent-gold); }
+        .study-block ul { list-style-type: none; padding-left: 0; }
+        
+        li {
+            background-color: #333;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+        li:hover { background-color: #3a3a3a; }
+        .sub-task { margin-left: 40px; background-color: #383838; }
+        .checked-task { border-left-color: var(--accent-green); background-color: #2a3a31; }
+        .checked-task label { text-decoration: line-through; color: #888; }
+        .golden-problem { border-left-color: var(--accent-gold); }
+        
+        input[type="checkbox"] { margin-right: 15px; min-width: 20px; min-height: 20px; cursor: pointer; accent-color: var(--accent-primary); margin-top: 3px; }
+        label { cursor: pointer; flex-grow: 1; }
+        label b { color: var(--accent-green); font-weight: 600; }
+        .rationale { display: block; font-size: 0.9em; color: var(--text-secondary); margin-top: 8px; padding-left: 5px; border-left: 2px solid #555; }
+
+        /* Controls and sticky progress */
+        .progress-controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+        .progress-controls button {
+            background: var(--accent-primary);
+            color: #fff;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .progress-controls button:hover { opacity: 0.95; }
+        .progress-controls button:active { transform: translateY(1px); }
+
+        #progress-container { position: sticky; top: 0; z-index: 100; background-color: var(--container-bg); }
+
+        @media print {
+            body { background: #fff; color: #000; }
+            .container { background: #fff; box-shadow: none; }
+            #progress-container, .progress-controls, .monitor-section { display: none !important; }
+            li { background: #fff; border-color: #ccc; }
+            .study-block h2, .study-block h3 { color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-grid">
+        <div class="header-title">
+            <h1>MAT216 Prep Dashboard</h1>
+            <p>Your focused checklist for the makeup exam.</p>
+        </div>
+        <div class="monitor-section">
+            <h3>Question Coverage Monitor</h3>
+            <div class="monitor-grid">
+                <div id="q1-monitor" class="question-status status-not-covered"><span>Q1: Systems</span></div>
+                <div id="q5-monitor" class="question-status status-not-covered"><span>Q5: Combination</span></div>
+                <div id="q6-monitor" class="question-status status-not-covered"><span>Q6: Independence</span></div>
+                <div id="q3-monitor" class="question-status status-not-covered"><span>Q3: Subspace</span></div>
+                <div id="q7-monitor" class="question-status status-not-covered"><span>Q7: Transformation</span></div>
+                <div id="q2-monitor" class="question-status status-not-covered"><span>Q2 & Q4: Theory</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="progress-controls" aria-label="Progress controls">
+        <button id="exportProgress" aria-label="Export progress to JSON">Export</button>
+        <button id="importProgress" aria-label="Import progress from JSON">Import</button>
+        <button id="resetProgress" aria-label="Reset all progress">Reset</button>
+        <input type="file" id="importFile" accept=".json" style="display: none;">
+    </div>
+    
+    <div id="progress-container"><div id="progress-bar">0%</div></div>
+
+    <!-- MAIN CHECKLIST -->
+    <div class="study-block">
+        <h2>Main Study Checklist</h2>
+        <!-- BLOCK 1 -->
+        <h3>Block 1: The Computational Engine</h3>
+        <ul>
+            <li><input type="checkbox" id="b1-t1"><label for="b1-t1">Watch videos on Gauss-Jordan & RREF.</label></li>
+            <li><input type="checkbox" id="b1-t2"><label for="b1-t2">Drill: Reduce a 3x4 matrix to RREF from memory.</label></li>
+            <li><input type="checkbox" id="b1-t3-s2"><label for="b1-t3-s2">Complete Practice Q1 (System of Equations). <b>(Q1 Covered)</b></label></li>
+            <li><input type="checkbox" id="b1-t4-s2"><label for="b1-t4-s2">Complete Practice Q5 (Linear Combination). <b>(Q5 Covered)</b></label></li>
+            <li><input type="checkbox" id="b1-t5-s2"><label for="b1-t5-s2">Complete Practice Q6 (Linear Independence). <b>(Q6 Covered)</b></label></li>
+        </ul>
+        <!-- BLOCK 2 -->
+        <h3>Block 2: The Conceptual Checks</h3>
+        <ul>
+            <li><input type="checkbox" id="b2-t1"><label for="b2-t1">Watch videos on Subspaces & Linear Transformations.</label></li>
+            <li><input type="checkbox" id="b2-t2"><label for="b2-t2">Complete Practice Q3 (Subspace). <b>(Q3 Covered)</b></label></li>
+            <li><input type="checkbox" id="b2-t3"><label for="b2-t3">Complete Practice Q7a (Linearity Check). <b>(Q7a Covered)</b></label></li>
+        </ul>
+        <!-- BLOCK 3 -->
+        <h3>Block 3: The Synthesis</h3>
+        <ul>
+            <li><input type="checkbox" id="b3-t1"><label for="b3-t1">Watch videos on Image, Kernel, & Fundamental Subspaces.</label></li>
+            <li><input type="checkbox" id="b3-t2-s3"><label for="b3-t2-s3">Complete Practice Q7b (Basis of Image). <b>(Q7b Covered)</b></label></li>
+        </ul>
+        <!-- BLOCK 4 -->
+        <h3>Block 4: The Safety Net</h3>
+        <ul>
+            <li><input type="checkbox" id="b4-t1"><label for="b4-t1">Complete Practice Q2 & Q4 (Theory). <b>(Q2/Q4 Covered)</b></label></li>
+            <li><input type="checkbox" id="b4-t2"><label for="b4-t2">Final Task: Complete a timed (1hr 20min) mock exam.</label></li>
+        </ul>
+    </div>
+    
+    <!-- PRACTICE CHECKLIST -->
+    <div class="study-block">
+        <h2>Golden Practice Recommendations</h2>
+        
+        <h3>Q1: System of Linear Equations</h3>
+        <ul>
+            <li><input type="checkbox" id="p1-warmup"><label for="p1-warmup"><b>Warm-up:</b> Anton, 1.2, Prob 8(b) <br> Solve the 3x3 system to ensure your RREF mechanics are perfect. <span class="rationale">Why: Builds speed and accuracy on a standard problem.</span></label></li>
+            <li class="golden-problem"><input type="checkbox" id="p1-golden"><label for="p1-golden"><b>Golden:</b> Anton, 1.2, Prob 6(b) <br> Solve the 3x4 system. <br> x₁ - x₂ + 2x₃ - x₄ = -1 <br> 2x₁ + x₂ - x₃ + 2x₄ = -2 <br> -x₁ + 2x₂ - 2x₃ - x₄ = 1 <span class="rationale">Why: Exactly mirrors your exam's format, forcing you to handle free variables.</span></label></li>
+        </ul>
+
+        <h3>Q2: Vector Space Axioms</h3>
+        <ul>
+            <li><input type="checkbox" id="p2-warmup"><label for="p2-warmup"><b>Warm-up:</b> Anton, 5.1, Prob 1 <br> Test the set with scalar multiplication k(x, y, z) = (kx, y, z). <span class="rationale">Why: Good practice for the mindset of testing individual axioms.</span></label></li>
+            <li class="golden-problem"><input type="checkbox" id="p2-golden"><label for="p2-golden"><b>Golden:</b> Anton, 5.1, Prob 16 <br> Test the set of pairs (x,y) with scalar multiplication k(x, y) = (kx, 0). <span class="rationale">Why: A perfect clone of your exam question's structure. It fails the identity axiom 1*u = u.</span></label></li>
+        </ul>
+
+        <h3>Q3: Subspaces</h3>
+        <ul>
+            <li><input type="checkbox" id="p3-warmup"><label for="p3-warmup"><b>Warm-up:</b> Anton, 5.2, Prob 1(c) <br> Prove that the plane a + b + c = 0 is a subspace of R³. <span class="rationale">Why: Excellent practice for writing a standard subspace proof using the 3 conditions.</span></label></li>
+            <li class="golden-problem"><input type="checkbox" id="p3-golden"><label for="p3-golden"><b>Golden:</b> Anton, 5.2, Prob 2(c) <br> Determine if the set of 2x2 matrices with determinant 0 is a subspace. <span class="rationale">Why: This is the *exact same problem* as your exam's Q3b. Master the counterexample.</span></label></li>
+        </ul>
+
+        <h3>Q5: Linear Combination</h3>
+        <ul>
+            <li><input type="checkbox" id="p5-warmup"><label for="p5-warmup"><b>Warm-up:</b> Anton, 5.2, Prob 7 <br> Check if vectors are linear combinations of u = (0,-2,2) and v = (1,3,-1). <span class="rationale">Why: Simple, clean practice for setting up and solving c₁u + c₂v = w.</span></label></li>
+            <li class="golden-problem"><input type="checkbox" id="p5-golden"><label for="p5-golden"><b>Golden:</b> Anton, 5.2, Prob 9(a) <br> Is M = [[6,-8],[-1,-8]] a linear combination of three other given matrices? <span class="rationale">Why: The exact format of your exam question, using matrices instead of vectors.</span></label></li>
+        </ul>
+
+        <h3>Q6: Linear Independence</h3>
+        <ul>
+            <li><input type="checkbox" id="p6-warmup"><label for="p6-warmup"><b>Warm-up:</b> Custom Prob #3 <br> Are v₁=(1,2,3), v₂=(4,5,6), v₃=(2,1,0) linearly independent? <span class="rationale">Why: A standard test. Set up Ax=0 and check if only the trivial solution exists.</span></label></li>
+            <li class="golden-problem"><input type="checkbox" id="p6-golden"><label for="p6-golden"><b>Golden:</b> Anton, 5.3, Prob 9 <br> For which values of λ are the vectors (1,λ,1), (1,1,λ), (λ,1,1) linearly dependent? <span class="rationale">Why: A tougher problem perfect for a makeup. Tests the key link: dependent ⇔ determinant is zero.</span></label></li>
+        </ul>
+
+        <h3>Q7: Linear Transformation</h3>
+        <ul>
+            <li><input type="checkbox" id="p7-warmup"><label for="p7-warmup"><b>Warm-up (Q7a):</b> Custom Prob <br> Is T(x, y) = (x², y) a linear transformation? <span class="rationale">Why: Practices spotting non-linear terms (like squares) and finding a counterexample.</span></label></li>
+            <li class="golden-problem"><input type="checkbox" id="p7-golden"><label for="p7-golden"><b>Golden (Q7b):</b> Anton, 5.5, Prob 11(c) <br> Find a basis for the column space of a given 3x5 matrix A. <span class="rationale">Why: Finding the basis for Im(T) is *identical* to finding the basis for the column space of T's standard matrix. This is the exact procedure you need.</span></label></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const progressBar = document.getElementById('progress-bar');
+        
+        const milestoneMapping = {
+            'q1-monitor': 'b1-t3-s2',
+            'q2-monitor': 'b4-t1',
+            'q3-monitor': 'b2-t2',
+            'q5-monitor': 'b1-t4-s2',
+            'q6-monitor': 'b1-t5-s2',
+            'q7-monitor-a': 'b2-t3', 
+            'q7-monitor-b': 'b3-t2-s3'
+        };
+
+        function updateAll() {
+            updateProgressBar();
+            updateMonitor();
+            checkboxes.forEach(updateTaskStyle);
+        }
+
+        function loadProgress() {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = localStorage.getItem(checkbox.id) === 'true';
+            });
+            updateAll();
+        }
+
+        function saveProgress(checkbox) {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        function updateProgressBar() {
+            const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            const totalCount = checkboxes.length;
+            const percentage = totalCount > 0 ? (checkedCount / totalCount) * 100 : 0;
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = Math.round(percentage) + '%';
+        }
+
+        function updateMonitor() {
+            ['q1-monitor', 'q3-monitor', 'q5-monitor', 'q6-monitor', 'q2-monitor'].forEach(monitorId => {
+                const milestoneCheckboxId = milestoneMapping[monitorId];
+                const isCovered = document.getElementById(milestoneCheckboxId).checked;
+                const monitorElement = document.getElementById(monitorId);
+                monitorElement.className = isCovered ? 'question-status status-covered' : 'question-status status-not-covered';
+            });
+
+            const q7a_covered = document.getElementById(milestoneMapping['q7-monitor-a']).checked;
+            const q7b_covered = document.getElementById(milestoneMapping['q7-monitor-b']).checked;
+            const q7Monitor = document.getElementById('q7-monitor');
+            q7Monitor.className = (q7a_covered && q7b_covered) ? 'question-status status-covered' : 'question-status status-not-covered';
+        }
+        
+        function updateTaskStyle(checkbox) {
+            const listItem = checkbox.parentElement.closest('li');
+            if (checkbox.checked) {
+                listItem.classList.add('checked-task');
+            } else {
+                listItem.classList.remove('checked-task');
+            }
+        }
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                saveProgress(checkbox);
+                updateTaskStyle(checkbox);
+                updateProgressBar();
+                updateMonitor();
+            });
+        });
+        
+        // Progress controls (export/import/reset)
+        const exportBtn = document.getElementById('exportProgress');
+        const importBtn = document.getElementById('importProgress');
+        const resetBtn = document.getElementById('resetProgress');
+        const importFile = document.getElementById('importFile');
+
+        if (exportBtn) {
+            exportBtn.addEventListener('click', () => {
+                const data = {};
+                checkboxes.forEach(cb => { if (cb.id) data[cb.id] = cb.checked; });
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'mat216-progress-' + new Date().toISOString().slice(0,10) + '.json';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        if (importBtn && importFile) {
+            importBtn.addEventListener('click', () => importFile.click());
+            importFile.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+                        checkboxes.forEach(cb => {
+                            if (cb.id in data) {
+                                cb.checked = !!data[cb.id];
+                                saveProgress(cb);
+                                updateTaskStyle(cb);
+                            }
+                        });
+                        updateProgressBar();
+                        updateMonitor();
+                        alert('Progress imported successfully.');
+                    } catch (err) {
+                        alert('Invalid JSON file.');
+                    }
+                };
+                reader.readAsText(file);
+                e.target.value = '';
+            });
+        }
+
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                if (!confirm('Reset all progress?')) return;
+                checkboxes.forEach(cb => {
+                    cb.checked = false;
+                    saveProgress(cb);
+                    updateTaskStyle(cb);
+                });
+                updateProgressBar();
+                updateMonitor();
+            });
+        }
+        
+        loadProgress();
+    });
+</script>
+
+</body>
+</html>
