@@ -115,6 +115,9 @@
         .ask-ai { margin-left: 10px; background: #444; color: #fff; padding: 4px 8px; border-radius: 6px; text-decoration: none; font-size: 0.85em; white-space: nowrap; }
         .ask-ai:hover { background: #555; }
 
+        /* Tag badges */
+        .tag { display: inline-block; margin-left: 6px; padding: 2px 6px; border-radius: 6px; font-size: 0.75em; background: #3a3a3a; color: #bbb; border: 1px solid #4a4a4a; }
+
         @media print {
             body { background: #fff; color: #000; }
             .container { background: #fff; box-shadow: none; }
@@ -160,6 +163,25 @@
         <div id="topic-summary-grid" class="topic-summary-grid"></div>
     </div>
 
+    <div class="study-block" id="questions-checklist">
+        <h2>Questions Checklist</h2>
+        <ul>
+            <li><input type="checkbox" id="qc-systems"><label for="qc-systems">Systems of Linear Equations (Q1)</label></li>
+            <li><input type="checkbox" id="qc-inverse"><label for="qc-inverse">Inverse & Invertibility</label></li>
+            <li><input type="checkbox" id="qc-determinants"><label for="qc-determinants">Determinants</label></li>
+            <li><input type="checkbox" id="qc-vector-spaces"><label for="qc-vector-spaces">Vector Spaces & Subspaces (Q2/Q3)</label></li>
+            <li><input type="checkbox" id="qc-linear-combination"><label for="qc-linear-combination">Linear Combination & Span (Q5)</label></li>
+            <li><input type="checkbox" id="qc-independence"><label for="qc-independence">Linear Independence (Q6)</label></li>
+            <li><input type="checkbox" id="qc-basis-rank"><label for="qc-basis-rank">Basis, Rank, Nullity (Q7b: Im/Kernel)</label></li>
+            <li><input type="checkbox" id="qc-transformations"><label for="qc-transformations">Linear Transformations (Q7a) & Coordinates</label></li>
+            <li><input type="checkbox" id="qc-eigen"><label for="qc-eigen">Eigenvalues/Eigenvectors, Characteristic Eqn, Diagonalization</label></li>
+            <li><input type="checkbox" id="qc-orthogonality"><label for="qc-orthogonality">Inner Product, Orthogonality, Orthogonal Sets</label></li>
+            <li><input type="checkbox" id="qc-projections"><label for="qc-projections">Orthogonal Projections</label></li>
+            <li><input type="checkbox" id="qc-gs"><label for="qc-gs">Gram–Schmidt</label></li>
+            <li><input type="checkbox" id="qc-least-squares"><label for="qc-least-squares">Least Squares</label></li>
+        </ul>
+    </div>
+
     <!-- MAIN CHECKLIST -->
     <div class="study-block">
         <h2>Phase 1: The Computational Core (8 Hours)</h2>
@@ -167,24 +189,24 @@
         <h3>Priority #1: System of Linear Equations (4 hours)</h3>
         <p style="margin: 10px 0; font-style: italic; color: var(--text-secondary);">This is the bedrock. Nearly every other question relies on these skills.</p>
         <ul>
-            <li><input type="checkbox" id="p1-w1"><label for="p1-w1">Watch: System of Linear Equations</label></li>
-            <li><input type="checkbox" id="p1-w2"><label for="p1-w2">Watch: Row-echelon Form of Matrix</label></li>
-            <li><input type="checkbox" id="p1-w3"><label for="p1-w3">Watch: Gaussian Elimination Method | Row Echelon Form</label></li>
-            <li><input type="checkbox" id="p1-w4"><label for="p1-w4">Watch: Gauss-Jordan Method | Reduced Row Echelon Form</label></li>
-            <li><input type="checkbox" id="p1-p1"><label for="p1-p1">Master Gauss-Jordan elimination to get RREF - practice until row operations are second nature</label></li>
-            <li><input type="checkbox" id="b1-t3-s2"><label for="b1-t3-s2">Practice: Solve Question 1 from the exam paper <b>(Q1 Covered)</b></label></li>
-            <li><input type="checkbox" id="p1-p2"><label for="p1-p2">Practice: Solve 3-4 additional similar systems of equations</label></li>
+            <li><input type="checkbox" id="p1-w1" data-kind="study"><label for="p1-w1">Watch: System of Linear Equations</label></li>
+            <li><input type="checkbox" id="p1-w2" data-kind="study"><label for="p1-w2">Watch: Row-echelon Form of Matrix</label></li>
+            <li><input type="checkbox" id="p1-w3" data-kind="study"><label for="p1-w3">Watch: Gaussian Elimination Method | Row Echelon Form</label></li>
+            <li><input type="checkbox" id="p1-w4" data-kind="study"><label for="p1-w4">Watch: Gauss-Jordan Method | Reduced Row Echelon Form</label></li>
+            <li><input type="checkbox" id="p1-p1" data-kind="study"><label for="p1-p1">Master Gauss-Jordan elimination to get RREF - practice until row operations are second nature</label></li>
+            <li><input type="checkbox" id="b1-t3-s2" data-kind="practice"><label for="b1-t3-s2">Practice: Solve Question 1 from the exam paper <b>(Q1 Covered)</b></label></li>
+            <li><input type="checkbox" id="p1-p2" data-kind="practice"><label for="p1-p2">Practice: Solve 3-4 additional similar systems of equations</label></li>
         </ul>
         
         <h3>Priority #2: Linear Independence & Combination (4 hours)</h3>
         <p style="margin: 10px 0; font-style: italic; color: var(--text-secondary);">Same method for both: set up vector equation → system of equations → solve using Priority #1 skills.</p>
         <ul>
-            <li><input type="checkbox" id="p2-w1"><label for="p2-w1">Watch: Linear Combination, Independence and Dependence</label></li>
-            <li><input type="checkbox" id="p2-w2"><label for="p2-w2">Watch: Linear Span, Basis and Dimension - 01 (combination and span parts)</label></li>
-            <li><input type="checkbox" id="p2-p1"><label for="p2-p1">Master Independence setup: c₁v₁ + c₂v₂ + ... = 0, solve for trivial solution</label></li>
-            <li><input type="checkbox" id="p2-p2"><label for="p2-p2">Master Combination setup: c₁v₁ + c₂v₂ + ... = v, solve for scalars cᵢ</label></li>
-            <li><input type="checkbox" id="b1-t5-s2"><label for="b1-t5-s2">Practice: Solve Question 6 from the exam paper <b>(Q6 Covered)</b></label></li>
-            <li><input type="checkbox" id="b1-t4-s2"><label for="b1-t4-s2">Practice: Solve Question 5 from the exam paper <b>(Q5 Covered)</b></label></li>
+            <li><input type="checkbox" id="p2-w1" data-kind="study"><label for="p2-w1">Watch: Linear Combination, Independence and Dependence</label></li>
+            <li><input type="checkbox" id="p2-w2" data-kind="study"><label for="p2-w2">Watch: Linear Span, Basis and Dimension - 01 (combination and span parts)</label></li>
+            <li><input type="checkbox" id="p2-p1" data-kind="study"><label for="p2-p1">Master Independence setup: c₁v₁ + c₂v₂ + ... = 0, solve for trivial solution</label></li>
+            <li><input type="checkbox" id="p2-p2" data-kind="study"><label for="p2-p2">Master Combination setup: c₁v₁ + c₂v₂ + ... = v, solve for scalars cᵢ</label></li>
+            <li><input type="checkbox" id="b1-t5-s2" data-kind="practice"><label for="b1-t5-s2">Practice: Solve Question 6 from the exam paper <b>(Q6 Covered)</b></label></li>
+            <li><input type="checkbox" id="b1-t4-s2" data-kind="practice"><label for="b1-t4-s2">Practice: Solve Question 5 from the exam paper <b>(Q5 Covered)</b></label></li>
         </ul>
     </div>
     
@@ -194,24 +216,24 @@
         <h3>Priority #3: Basis, Dimension, Rank & Nullity (4 hours)</h3>
         <p style="margin: 10px 0; font-style: italic; color: var(--text-secondary);">Q7b is another direct application of row reduction. Sounds complicated, but the procedure is straightforward.</p>
         <ul>
-            <li><input type="checkbox" id="p3-w1"><label for="p3-w1">Watch: Four Fundamental Subspaces (Row and Column Space, Null and Left Null Space)</label></li>
-            <li><input type="checkbox" id="p3-w2"><label for="p3-w2">Watch: Image and Kernel of a Linear Transformation</label></li>
-            <li><input type="checkbox" id="p3-a1"><label for="p3-a1">Master Algorithm Step 1: Create standard matrix from transformation formula</label></li>
-            <li><input type="checkbox" id="p3-a2"><label for="p3-a2">Master Algorithm Step 2: Reduce matrix to REF (not fully to RREF)</label></li>
-            <li><input type="checkbox" id="p3-a3"><label for="p3-a3">Master Algorithm Step 3: Identify pivot columns</label></li>
-            <li><input type="checkbox" id="p3-a4"><label for="p3-a4">Master Algorithm Step 4: Basis for Image = original pivot columns, dimension = number of pivots</label></li>
-            <li><input type="checkbox" id="b3-t2-s3"><label for="b3-t2-s3">Practice: Solve Question 7b from the exam paper <b>(Q7b Covered)</b></label></li>
-            <li><input type="checkbox" id="p3-p1"><label for="p3-p1">Practice: Find basis for Kernel (Null Space) - common related question</label></li>
+            <li><input type="checkbox" id="p3-w1" data-kind="study"><label for="p3-w1">Watch: Four Fundamental Subspaces (Row and Column Space, Null and Left Null Space)</label></li>
+            <li><input type="checkbox" id="p3-w2" data-kind="study"><label for="p3-w2">Watch: Image and Kernel of a Linear Transformation</label></li>
+            <li><input type="checkbox" id="p3-a1" data-kind="study"><label for="p3-a1">Master Algorithm Step 1: Create standard matrix from transformation formula</label></li>
+            <li><input type="checkbox" id="p3-a2" data-kind="study"><label for="p3-a2">Master Algorithm Step 2: Reduce matrix to REF (not fully to RREF)</label></li>
+            <li><input type="checkbox" id="p3-a3" data-kind="study"><label for="p3-a3">Master Algorithm Step 3: Identify pivot columns</label></li>
+            <li><input type="checkbox" id="p3-a4" data-kind="study"><label for="p3-a4">Master Algorithm Step 4: Basis for Image = original pivot columns, dimension = number of pivots</label></li>
+            <li><input type="checkbox" id="b3-t2-s3" data-kind="practice"><label for="b3-t2-s3">Practice: Solve Question 7b from the exam paper <b>(Q7b Covered)</b></label></li>
+            <li><input type="checkbox" id="p3-p1" data-kind="practice"><label for="p3-p1">Practice: Find basis for Kernel (Null Space) - common related question</label></li>
         </ul>
         
         <h3>Priority #4: Subspaces (3 hours)</h3>
         <p style="margin: 10px 0; font-style: italic; color: var(--text-secondary);">Simple 3-step recipe test. The counterexample for matrix question is a classic worth memorizing.</p>
         <ul>
-            <li><input type="checkbox" id="p4-w1"><label for="p4-w1">Watch: Linear Subspaces - 01</label></li>
-            <li><input type="checkbox" id="p4-w2"><label for="p4-w2">Watch: Advanced Linear Subspaces - 02</label></li>
-            <li><input type="checkbox" id="p4-t1"><label for="p4-t1">Memorize Subspace Test: 1) Contains zero vector? 2) Closed under addition? 3) Closed under scalar multiplication?</label></li>
-            <li><input type="checkbox" id="p4-t2"><label for="p4-t2">Understand counterexample for Q3b: two singular matrices that add to non-singular matrix</label></li>
-            <li><input type="checkbox" id="b2-t2"><label for="b2-t2">Practice: Write out proofs for both parts of Question 3 <b>(Q3 Covered)</b></label></li>
+            <li><input type="checkbox" id="p4-w1" data-kind="study"><label for="p4-w1">Watch: Linear Subspaces - 01</label></li>
+            <li><input type="checkbox" id="p4-w2" data-kind="study"><label for="p4-w2">Watch: Advanced Linear Subspaces - 02</label></li>
+            <li><input type="checkbox" id="p4-t1" data-kind="study"><label for="p4-t1">Memorize Subspace Test: 1) Contains zero vector? 2) Closed under addition? 3) Closed under scalar multiplication?</label></li>
+            <li><input type="checkbox" id="p4-t2" data-kind="study"><label for="p4-t2">Understand counterexample for Q3b: two singular matrices that add to non-singular matrix</label></li>
+            <li><input type="checkbox" id="b2-t2" data-kind="practice"><label for="b2-t2">Practice: Write out proofs for both parts of Question 3 <b>(Q3 Covered)</b></label></li>
         </ul>
     </div>
     
@@ -221,25 +243,25 @@
         <h3>Priority #5: Linear Transformations (Proof) (2 hours)</h3>
         <p style="margin: 10px 0; font-style: italic; color: var(--text-secondary);">Less calculation, more about spotting the "trick" in the formula (absolute value |x|).</p>
         <ul>
-            <li><input type="checkbox" id="p5-w1"><label for="p5-w1">Watch: Linear Transformations</label></li>
-            <li><input type="checkbox" id="p5-t1"><label for="p5-t1">Understand two properties: T(u+v) = T(u)+T(v) and T(cu) = cT(u)</label></li>
-            <li><input type="checkbox" id="p5-t2"><label for="p5-t2">Look for red flags: absolute values, squares (x²), constants being added</label></li>
-            <li><input type="checkbox" id="b2-t3"><label for="b2-t3">Practice: Solve Question 7a by finding numerical counterexample for homogeneity property <b>(Q7a Covered)</b></label></li>
+            <li><input type="checkbox" id="p5-w1" data-kind="study"><label for="p5-w1">Watch: Linear Transformations</label></li>
+            <li><input type="checkbox" id="p5-t1" data-kind="study"><label for="p5-t1">Understand two properties: T(u+v) = T(u)+T(v) and T(cu) = cT(u)</label></li>
+            <li><input type="checkbox" id="p5-t2" data-kind="study"><label for="p5-t2">Look for red flags: absolute values, squares (x²), constants being added</label></li>
+            <li><input type="checkbox" id="b2-t3" data-kind="practice"><label for="b2-t3">Practice: Solve Question 7a by finding numerical counterexample for homogeneity property <b>(Q7a Covered)</b></label></li>
         </ul>
         
         <h3>Priority #6: Vector Spaces (Axioms) (1.5 hours)</h3>
         <p style="margin: 10px 0; font-style: italic; color: var(--text-secondary);">Most abstract. Good candidate to skip if confident in 5 other topics. Don't prove all 10 axioms - find one that fails.</p>
         <ul>
-            <li><input type="checkbox" id="p6-w1"><label for="p6-w1">Watch: General Vector Spaces - 01</label></li>
-            <li><input type="checkbox" id="p6-t1"><label for="p6-t1">Focus on finding obvious failures: zero vector, additive inverses, or 1u = u axiom</label></li>
-            <li><input type="checkbox" id="b4-t1"><label for="b4-t1">Practice: Review Question 2 briefly <b>(Q2 Covered)</b></label></li>
+            <li><input type="checkbox" id="p6-w1" data-kind="study"><label for="p6-w1">Watch: General Vector Spaces - 01</label></li>
+            <li><input type="checkbox" id="p6-t1" data-kind="study"><label for="p6-t1">Focus on finding obvious failures: zero vector, additive inverses, or 1u = u axiom</label></li>
+            <li><input type="checkbox" id="b4-t1" data-kind="practice"><label for="b4-t1">Practice: Review Question 2 briefly <b>(Q2 Covered)</b></label></li>
         </ul>
         
         <h3>Final Review and Buffer (1.5 hours)</h3>
         <ul>
-            <li><input type="checkbox" id="fr-1"><label for="fr-1">Re-do one problem from each of your top 5 priority topics</label></li>
-            <li><input type="checkbox" id="fr-2"><label for="fr-2">Create one-page summary sheet: Subspace Test, Linear Independence Test, key procedures</label></li>
-            <li><input type="checkbox" id="fr-3"><label for="fr-3">Get adequate sleep - tired brain makes mistakes on row operations</label></li>
+            <li><input type="checkbox" id="fr-1" data-kind="study"><label for="fr-1">Re-do one problem from each of your top 5 priority topics</label></li>
+            <li><input type="checkbox" id="fr-2" data-kind="study"><label for="fr-2">Create one-page summary sheet: Subspace Test, Linear Independence Test, key procedures</label></li>
+            <li><input type="checkbox" id="fr-3" data-kind="study"><label for="fr-3">Get adequate sleep - tired brain makes mistakes on row operations</label></li>
         </ul>
     </div>
     
@@ -256,38 +278,38 @@
                 
                 <h3>Q1: System of Linear Equations</h3>
                 <ul>
-                    <li><input type="checkbox" id="p1-warmup" data-topic="systems" data-topic-label="Systems"><label for="p1-warmup"><b>Warm-up:</b> Anton, 1.2, Prob 8(b) <br> Solve the 3x3 system to ensure your RREF mechanics are perfect. <span class="rationale">Why: Builds speed and accuracy on a standard problem.</span></label></li>
-                    <li class="golden-problem"><input type="checkbox" id="p1-golden" data-topic="systems" data-topic-label="Systems"><label for="p1-golden"><b>Golden:</b> Anton, 1.2, Prob 6(b) <br> Solve the 3x4 system. <br> x₁ - x₂ + 2x₃ - x₄ = -1 <br> 2x₁ + x₂ - x₃ + 2x₄ = -2 <br> -x₁ + 2x₂ - 2x₃ - x₄ = 1 <span class="rationale">Why: Exactly mirrors your exam's format, forcing you to handle free variables.</span></label></li>
+                    <li><input type="checkbox" id="p1-warmup" data-kind="practice" data-topic="systems" data-topic-label="Systems"><label for="p1-warmup"><b>Warm-up:</b> Anton, 1.2, Prob 8(b) <br> Solve the 3x3 system to ensure your RREF mechanics are perfect. <span class="rationale">Why: Builds speed and accuracy on a standard problem.</span><span class="tag">Anton</span><span class="tag">Gaussian</span></label><a class="ask-ai" href="#" data-question="Anton 1.2 #8(b): Solve the 3x3 system by Gauss-Jordan elimination.">Ask AI</a></li>
+                    <li class="golden-problem"><input type="checkbox" id="p1-golden" data-kind="practice" data-topic="systems" data-topic-label="Systems"><label for="p1-golden"><b>Golden:</b> Anton, 1.2, Prob 6(b) <br> Solve the 3x4 system. <br> x₁ - x₂ + 2x₃ - x₄ = -1 <br> 2x₁ + x₂ - x₃ + 2x₄ = -2 <br> -x₁ + 2x₂ - 2x₃ - x₄ = 1 <span class="rationale">Why: Exactly mirrors your exam's format, forcing you to handle free variables.</span><span class="tag">Anton</span><span class="tag">RREF</span></label><a class="ask-ai" href="#" data-question="Anton 1.2 #6(b): Solve the system x1 - x2 + 2x3 - x4 = -1; 2x1 + x2 - x3 + 2x4 = -2; -x1 + 2x2 - 2x3 - x4 = 1 by Gauss–Jordan.">Ask AI</a></li>
                 </ul>
 
                 <h3>Q2: Vector Space Axioms</h3>
                 <ul>
-                    <li><input type="checkbox" id="p2-warmup" data-topic="vector-spaces" data-topic-label="Vector Spaces"><label for="p2-warmup"><b>Warm-up:</b> Anton, 5.1, Prob 1 <br> Test the set with scalar multiplication k(x, y, z) = (kx, y, z). <span class="rationale">Why: Good practice for the mindset of testing individual axioms.</span></label></li>
-                    <li class="golden-problem"><input type="checkbox" id="p2-golden" data-topic="vector-spaces" data-topic-label="Vector Spaces"><label for="p2-golden"><b>Golden:</b> Anton, 5.1, Prob 16 <br> Test the set of pairs (x,y) with scalar multiplication k(x, y) = (kx, 0). <span class="rationale">Why: A perfect clone of your exam question's structure. It fails the identity axiom 1*u = u.</span></label></li>
+                    <li><input type="checkbox" id="p2-warmup" data-kind="practice" data-topic="vector-spaces" data-topic-label="Vector Spaces"><label for="p2-warmup"><b>Warm-up:</b> Anton, 5.1, Prob 1 <br> Test the set with scalar multiplication k(x, y, z) = (kx, y, z). <span class="rationale">Why: Good practice for the mindset of testing individual axioms.</span><span class="tag">Anton</span><span class="tag">Axioms</span></label><a class="ask-ai" href="#" data-question="Anton 5.1 #1: Determine if R^3 with operations (x,y,z)+(x',y',z')=(x+x',y+y',z+z') and k(x,y,z)=(kx,y,z) is a vector space. Identify failing axioms if not.">Ask AI</a></li>
+                    <li class="golden-problem"><input type="checkbox" id="p2-golden" data-kind="practice" data-topic="vector-spaces" data-topic-label="Vector Spaces"><label for="p2-golden"><b>Golden:</b> Anton, 5.1, Prob 16 <br> Test the set of pairs (x,y) with scalar multiplication k(x, y) = (kx, 0). <span class="rationale">Why: A perfect clone of your exam question's structure. It fails the identity axiom 1*u = u.</span><span class="tag">Anton</span><span class="tag">Axioms</span></label><a class="ask-ai" href="#" data-question="Anton 5.1 #16: In R^2 with operations (x,y)+(x',y')=(x+x',y+y'), k(x,y)=(kx,0), determine if this is a vector space. If not, specify which axioms fail and why.">Ask AI</a></li>
                 </ul>
 
                 <h3>Q3: Subspaces</h3>
                 <ul>
-                    <li><input type="checkbox" id="p3-warmup" data-topic="subspaces" data-topic-label="Subspaces"><label for="p3-warmup"><b>Warm-up:</b> Anton, 5.2, Prob 1(c) <br> Prove that the plane a + b + c = 0 is a subspace of R³. <span class="rationale">Why: Excellent practice for writing a standard subspace proof using the 3 conditions.</span></label></li>
-                    <li class="golden-problem"><input type="checkbox" id="p3-golden" data-topic="subspaces" data-topic-label="Subspaces"><label for="p3-golden"><b>Golden:</b> Anton, 5.2, Prob 2(c) <br> Determine if the set of 2x2 matrices with determinant 0 is a subspace. <span class="rationale">Why: This is the exact same problem as your exam's Q3b. Master the counterexample.</span></label></li>
+                    <li><input type="checkbox" id="p3-warmup" data-kind="practice" data-topic="subspaces" data-topic-label="Subspaces"><label for="p3-warmup"><b>Warm-up:</b> Anton, 5.2, Prob 1(c) <br> Prove that the plane a + b + c = 0 is a subspace of R³. <span class="rationale">Why: Excellent practice for writing a standard subspace proof using the 3 conditions.</span><span class="tag">Anton</span><span class="tag">Subspace Test</span></label><a class="ask-ai" href="#" data-question="Anton 5.2 #1(c): Prove that the plane a+b+c=0 in R^3 is a subspace by verifying the three subspace conditions.">Ask AI</a></li>
+                    <li class="golden-problem"><input type="checkbox" id="p3-golden" data-kind="practice" data-topic="subspaces" data-topic-label="Subspaces"><label for="p3-golden"><b>Golden:</b> Anton, 5.2, Prob 2(c) <br> Determine if the set of 2x2 matrices with determinant 0 is a subspace. <span class="rationale">Why: This is the exact same problem as your exam's Q3b. Master the counterexample.</span><span class="tag">Anton</span><span class="tag">Det=0</span></label><a class="ask-ai" href="#" data-question="Anton 5.2 #2(c): Determine whether the set of 2x2 matrices with determinant 0 forms a subspace of M_22. Provide proof or counterexample.">Ask AI</a></li>
                 </ul>
 
                 <h3>Q5: Linear Combination</h3>
                 <ul>
-                    <li><input type="checkbox" id="p5-warmup" data-topic="linear-combination" data-topic-label="Linear Combination"><label for="p5-warmup"><b>Warm-up:</b> Anton, 5.2, Prob 7 <br> Check if vectors are linear combinations of u = (0,-2,2) and v = (1,3,-1). <span class="rationale">Why: Simple, clean practice for setting up and solving c₁u + c₂v = w.</span></label></li>
-                    <li class="golden-problem"><input type="checkbox" id="p5-golden" data-topic="linear-combination" data-topic-label="Linear Combination"><label for="p5-golden"><b>Golden:</b> Anton, 5.2, Prob 9(a) <br> Is M = [[6,-8],[-1,-8]] a linear combination of three other given matrices? <span class="rationale">Why: The exact format of your exam question, using matrices instead of vectors.</span></label></li>
+                    <li><input type="checkbox" id="p5-warmup" data-kind="practice" data-topic="linear-combination" data-topic-label="Linear Combination"><label for="p5-warmup"><b>Warm-up:</b> Anton, 5.2, Prob 7 <br> Check if vectors are linear combinations of u = (0,-2,2) and v = (1,3,-1). <span class="rationale">Why: Simple, clean practice for setting up and solving c₁u + c₂v = w.</span><span class="tag">Anton</span><span class="tag">Span</span></label><a class="ask-ai" href="#" data-question="Anton 5.2 #7: For u=(0,-2,2) and v=(1,3,-1), determine which listed vectors are linear combinations of u and v. Show working.">Ask AI</a></li>
+                    <li class="golden-problem"><input type="checkbox" id="p5-golden" data-kind="practice" data-topic="linear-combination" data-topic-label="Linear Combination"><label for="p5-golden"><b>Golden:</b> Anton, 5.2, Prob 9(a) <br> Is M = [[6,-8],[-1,-8]] a linear combination of three other given matrices? <span class="rationale">Why: The exact format of your exam question, using matrices instead of vectors.</span><span class="tag">Anton</span><span class="tag">Matrices</span></label><a class="ask-ai" href="#" data-question="Anton 5.2 #9(a): Given A=[[4,0],[-2,-2]], B=[[1,-1],[2,3]], C=[[0,2],[1,4]], determine if M=[[6,-8],[-1,-8]] is a linear combination of A,B,C. Find coefficients if possible.">Ask AI</a></li>
                 </ul>
 
                 <h3>Q6: Linear Independence</h3>
                 <ul>
-                    <li><input type="checkbox" id="p6-warmup" data-topic="independence" data-topic-label="Linear Independence"><label for="p6-warmup"><b>Warm-up:</b> Custom Prob #3 <br> Are v₁=(1,2,3), v₂=(4,5,6), v₃=(2,1,0) linearly independent? <span class="rationale">Why: A standard test. Set up Ax=0 and check if only the trivial solution exists.</span></label></li>
-                    <li class="golden-problem"><input type="checkbox" id="p6-golden" data-topic="independence" data-topic-label="Linear Independence"><label for="p6-golden"><b>Golden:</b> Anton, 5.3, Prob 9 <br> For which values of λ are the vectors (1,λ,1), (1,1,λ), (λ,1,1) linearly dependent? <span class="rationale">Why: A tougher problem perfect for a makeup. Tests the key link: dependent ⇔ determinant is zero.</span></label></li>
+                    <li><input type="checkbox" id="p6-warmup" data-kind="practice" data-topic="independence" data-topic-label="Linear Independence"><label for="p6-warmup"><b>Warm-up:</b> Custom Prob #3 <br> Are v₁=(1,2,3), v₂=(4,5,6), v₃=(2,1,0) linearly independent? <span class="rationale">Why: A standard test. Set up Ax=0 and check if only the trivial solution exists.</span><span class="tag">Custom</span><span class="tag">Independence</span></label><a class="ask-ai" href="#" data-question="Decide if v1=(1,2,3), v2=(4,5,6), v3=(2,1,0) are linearly independent in R^3. Provide reasoning using Ax=0.">Ask AI</a></li>
+                    <li class="golden-problem"><input type="checkbox" id="p6-golden" data-kind="practice" data-topic="independence" data-topic-label="Linear Independence"><label for="p6-golden"><b>Golden:</b> Anton, 5.3, Prob 9 <br> For which values of λ are the vectors (1,λ,1), (1,1,λ), (λ,1,1) linearly dependent? <span class="rationale">Why: A tougher problem perfect for a makeup. Tests the key link: dependent ⇔ determinant is zero.</span><span class="tag">Anton</span><span class="tag">Determinant</span></label><a class="ask-ai" href="#" data-question="Anton 5.3 #9: Find all real λ such that (1,λ,1), (1,1,λ), (λ,1,1) are linearly dependent in R^3. Explain clearly.">Ask AI</a></li>
                 </ul>
 
                 <h3>Q7: Linear Transformation</h3>
                 <ul>
-                    <li><input type="checkbox" id="p7-warmup" data-topic="transformations" data-topic-label="Transformations"><label for="p7-warmup"><b>Warm-up (Q7a):</b> Custom Prob <br> Is T(x, y) = (x², y) a linear transformation? <span class="rationale">Why: Practices spotting non-linear terms (like squares) and finding a counterexample.</span></label></li>
-                    <li class="golden-problem"><input type="checkbox" id="p7-golden" data-topic="basis-rank" data-topic-label="Basis/Rank (Im/Kernel)"><label for="p7-golden"><b>Golden (Q7b):</b> Anton, 5.5, Prob 11(c) <br> Find a basis for the column space of a given 3x5 matrix A. <span class="rationale">Why: Finding the basis for Im(T) is identical to finding the basis for the column space of T's standard matrix.</span></label></li>
+                    <li><input type="checkbox" id="p7-warmup" data-kind="practice" data-topic="transformations" data-topic-label="Transformations"><label for="p7-warmup"><b>Warm-up (Q7a):</b> Custom Prob <br> Is T(x, y) = (x², y) a linear transformation? <span class="rationale">Why: Practices spotting non-linear terms (like squares) and finding a counterexample.</span><span class="tag">Custom</span><span class="tag">Linearity</span></label><a class="ask-ai" href="#" data-question="Is T(x,y)=(x^2,y) a linear transformation from R^2 to R^2? Show which linearity property fails with a counterexample.">Ask AI</a></li>
+                    <li class="golden-problem"><input type="checkbox" id="p7-golden" data-kind="practice" data-topic="basis-rank" data-topic-label="Basis/Rank (Im/Kernel)"><label for="p7-golden"><b>Golden (Q7b):</b> Anton, 5.5, Prob 11(c) <br> Find a basis for the column space of a given 3x5 matrix A. <span class="rationale">Why: Finding the basis for Im(T) is identical to finding the basis for the column space of T's standard matrix.</span><span class="tag">Anton</span><span class="tag">Column Space</span></label><a class="ask-ai" href="#" data-question="Anton 5.5 #11(c): Given a 3x5 matrix A (from the exercise), find a basis for Col(A) by identifying pivot columns after row reduction.">Ask AI</a></li>
                 </ul>
             </div>
         </div>
@@ -299,76 +321,76 @@
 
                 <h3>Systems of Linear Equations</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-sys-strang-2_2-13" data-topic="systems" data-topic-label="Systems"><label for="ap-sys-strang-2_2-13">Strang 2.2 #13 — Gaussian elimination practice</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%202.2%20Problem%2013%20Gaussian%20elimination%20solution%20steps" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-sys-anton-1_2-12c" data-topic="systems" data-topic-label="Systems"><label for="ap-sys-anton-1_2-12c">Anton 1.2 #12(c) — Consistency and RREF</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%201.2%20Problem%2012(c)%20consistency%20and%20RREF" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-sys-strang-2_3-24" data-topic="systems" data-topic-label="Systems"><label for="ap-sys-strang-2_3-24">Strang 2.3 #24 — Augmented matrices and elimination</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%202.3%20Problem%2024%20augmented%20matrices%20elimination" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-sys-strang-2_2-13" data-kind="practice" data-topic="systems" data-topic-label="Systems"><label for="ap-sys-strang-2_2-13">Strang 2.2 #13 — L,U,c for systems from Problem 11<span class="tag">Strang</span><span class="tag">LU</span></label><a class="ask-ai" href="#" data-question="Strang 2.2 #13: For the systems in Problem 11, write down L and U and c so that Ax=b -> Ux=c and Lc=b. Show steps.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-sys-anton-1_2-12c" data-kind="practice" data-topic="systems" data-topic-label="Systems"><label for="ap-sys-anton-1_2-12c">Anton 1.2 #12(c) — Nontrivial solution test (no pencil)<span class="tag">Anton</span><span class="tag">Homogeneous</span></label><a class="ask-ai" href="#" data-question="Anton 1.2 #12(c): Without computation, determine if the homogeneous system x1-2x2+x3=0; 2x1+3x2+x3=0; 3x1+x2+2x3=0 has a nontrivial solution. Explain.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-sys-strang-2_3-24" data-kind="practice" data-topic="systems" data-topic-label="Systems"><label for="ap-sys-strang-2_3-24">Strang 2.3 #24 — For which a does elimination fail on A=[a 2; a a]?<span class="tag">Strang</span><span class="tag">Pivot</span></label><a class="ask-ai" href="#" data-question="Strang 2.3 #24: For which two numbers a will elimination fail on A=[[a,2],[a,a]]? Explain using pivot conditions.">Ask AI</a></li>
                 </ul>
 
                 <h3>Inverse & Invertibility</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-inv-anton-1_5-7a" data-topic="inverse" data-topic-label="Inverse/Invertibility"><label for="ap-inv-anton-1_5-7a">Anton 1.5 #7(a) — Expressing matrices as products of elementary matrices</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%201.5%20Problem%207(a)%20elementary%20matrices%20product" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-inv-strang-2_5-10" data-topic="inverse" data-topic-label="Inverse/Invertibility"><label for="ap-inv-strang-2_5-10">Strang 2.5 #10 — Gauss-Jordan inverse</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%202.5%20Problem%2010%20Gauss-Jordan%20inverse" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-inv-anton-1_5-7a" data-kind="practice" data-topic="inverse" data-topic-label="Inverse/Invertibility"><label for="ap-inv-anton-1_5-7a">Anton 1.5 #7(a) — Inverse of [[1,4],[2,7]]<span class="tag">Anton</span><span class="tag">Inverse</span></label><a class="ask-ai" href="#" data-question="Anton 1.5 #7(a): Find the inverse of [[1,4],[2,7]] using Gauss-Jordan (if invertible) and check by multiplication.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-inv-strang-2_5-10" data-kind="practice" data-topic="inverse" data-topic-label="Inverse/Invertibility"><label for="ap-inv-strang-2_5-10">Strang 2.5 #10 — Inverses of A,B,C (perm/diag/upper)<span class="tag">Strang</span><span class="tag">Inverse</span></label><a class="ask-ai" href="#" data-question="Strang 2.5 #10: Find inverses of A=[[0,0,1],[0,1,0],[1,0,0]], B=[[2,0,0],[0,1,0],[0,0,3]], C=[[1,1,1],[0,1,1],[0,0,1]]. Show steps.">Ask AI</a></li>
                 </ul>
 
                 <h3>Determinants</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-det-anton-2_1-3" data-topic="determinants" data-topic-label="Determinants"><label for="ap-det-anton-2_1-3">Anton 2.1 #3 — Cofactor expansion</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%202.1%20Problem%203%20cofactor%20expansion%20determinant" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-det-strang-5_1-16" data-topic="determinants" data-topic-label="Determinants"><label for="ap-det-strang-5_1-16">Strang 5.1 #16 — det(AB) = det(A)det(B)</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%205.1%20Problem%2016%20det(AB)%20=%20det(A)det(B)" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-det-anton-2_1-3" data-kind="practice" data-topic="determinants" data-topic-label="Determinants"><label for="ap-det-anton-2_1-3">Anton 2.1 #3 — Minors and cofactors M23,C23 and M41,C41<span class="tag">Anton</span><span class="tag">Cofactors</span></label><a class="ask-ai" href="#" data-question="Anton 2.1 #3: For A=[[1,0,3,0],[2,1,4,-1],[3,2,4,0],[0,0,1,-1]], find (a) M23 and C23 (b) M41 and C41.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-det-strang-5_1-13" data-kind="practice" data-topic="determinants" data-topic-label="Determinants"><label for="ap-det-strang-5_1-13">Strang 5.1 #13 — det A via product of pivots (reduce A to U)<span class="tag">Strang</span><span class="tag">LU</span></label><a class="ask-ai" href="#" data-question="Strang 5.1 #13: Reduce A=[[1,2,3],[2,2,3],[3,3,3]] to U and compute det(A) as product of pivots.">Ask AI</a></li>
                 </ul>
 
                 <h3>Vector Spaces & Subspaces</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-vs-anton-5_1-12" data-topic="vector-spaces" data-topic-label="Vector Spaces"><label for="ap-vs-anton-5_1-12">Anton 5.1 #12 — Vector space axiom check</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%205.1%20Problem%2012%20vector%20space%20axioms" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-vs-strang-3_1-10" data-topic="subspaces" data-topic-label="Subspaces"><label for="ap-vs-strang-3_1-10">Strang 3.1 #10 — Intersection of subspaces</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%203.1%20Problem%2010%20intersection%20of%20subspaces" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-vs-anton-5_1-12" data-kind="practice" data-topic="vector-spaces" data-topic-label="Vector Spaces"><label for="ap-vs-anton-5_1-12">Anton 5.1 #12 — Special 2x2 matrices as a vector space?<span class="tag">Anton</span><span class="tag">Axioms</span></label><a class="ask-ai" href="#" data-question="Anton 5.1 #12: Determine if the set of all 2x2 matrices [[a,1],[1,b]] is a vector space under usual operations. Justify by axioms.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-vs-strang-3_1-10" data-kind="practice" data-topic="subspaces" data-topic-label="Subspaces"><label for="ap-vs-strang-3_1-10">Strang 3.1 #10 — Describe all points (x,y,z) in the unit cube via i,j,k<span class="tag">Strang</span><span class="tag">Geometry</span></label><a class="ask-ai" href="#" data-question="Strang 3.1 #10: Which point is i+j? Which point is i+j+k? Describe all points (x,y,z) in the cube with 0<=x,y,z<=1.">Ask AI</a></li>
                 </ul>
 
                 <h3>Linear Combination & Span</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-span-anton-5_2-10d" data-topic="linear-combination" data-topic-label="Linear Combination"><label for="ap-span-anton-5_2-10d">Anton 5.2 #10(d) — Membership in span</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%205.2%20Problem%2010(d)%20span%20membership" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-span-strang-2_4-5" data-topic="linear-combination" data-topic-label="Linear Combination"><label for="ap-span-strang-2_4-5">Strang 2.4 #5 — Column space combinations</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%202.4%20Problem%205%20column%20space%20combination" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-span-anton-5_2-10d" data-kind="practice" data-topic="linear-combination" data-topic-label="Linear Combination"><label for="ap-span-anton-5_2-10d">Anton 5.2 #10(d) — Linear combination of polynomials<span class="tag">Anton</span><span class="tag">Polynomials</span></label><a class="ask-ai" href="#" data-question="Anton 5.2 #10(d): Determine if the polynomial -x^2 is a linear combination of p1=1+x-2x^2, p2=2+5x-x^2, p3=x+x^2. Find coefficients if yes.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-span-strang-2_4-5" data-kind="practice" data-topic="linear-combination" data-topic-label="Linear Combination"><label for="ap-span-strang-2_4-5">Strang 2.4 #5 — Column space combinations<span class="tag">Strang</span><span class="tag">Column Space</span></label><a class="ask-ai" href="#" data-question="Strang 2.4 #5: Compute u+v+w and 2u+2v+w. Explain how you know u,v,w lie in a plane (column space argument).">Ask AI</a></li>
                 </ul>
 
                 <h3>Linear Independence</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-li-anton-5_3-6b" data-topic="independence" data-topic-label="Linear Independence"><label for="ap-li-anton-5_3-6b">Anton 5.3 #6(b) — Independence test</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%205.3%20Problem%206(b)%20linear%20independence%20test" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-li-strang-3_5-2" data-topic="independence" data-topic-label="Linear Independence"><label for="ap-li-strang-3_5-2">Strang 3.5 #2 — Independent columns</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%203.5%20Problem%202%20independent%20columns" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-li-anton-5_3-6b" data-kind="practice" data-topic="independence" data-topic-label="Linear Independence"><label for="ap-li-anton-5_3-6b">Anton 5.3 #6(b) — Linear independence in R³<span class="tag">Anton</span><span class="tag">Independence</span></label><a class="ask-ai" href="#" data-question="Anton 5.3 #6(b): Determine whether the given set of vectors in R^3 (from the exercise) is linearly independent. Provide reasoning.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-li-strang-3_5-2" data-kind="practice" data-topic="independence" data-topic-label="Linear Independence"><label for="ap-li-strang-3_5-2">Strang 3.5 #2 — Independent columns in R^4<span class="tag">Strang</span><span class="tag">Independence</span></label><a class="ask-ai" href="#" data-question="Strang 3.5 #2: Are v1=(1,1,0,0), v2=(1,0,1,0), v3=(0,1,0,1), v4=(0,0,1,1) independent? Explain.">Ask AI</a></li>
                 </ul>
 
                 <h3>Rank & Nullity</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-rank-anton-5_6-2d" data-topic="basis-rank" data-topic-label="Basis/Rank (Im/Kernel)"><label for="ap-rank-anton-5_6-2d">Anton 5.6 #2(d) — Rank/Nullity computation</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%205.6%20Problem%202(d)%20rank%20and%20nullity" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-rank-anton-5_6-13" data-topic="basis-rank" data-topic-label="Basis/Rank (Im/Kernel)"><label for="ap-rank-anton-5_6-13">Anton 5.6 #13 — Dimension theorem application</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%205.6%20Problem%2013%20dimension%20theorem" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-rank-anton-5_6-2d" data-kind="practice" data-topic="basis-rank" data-topic-label="Basis/Rank (Im/Kernel)"><label for="ap-rank-anton-5_6-2d">Anton 5.6 #2(d) — Rank/Nullity of 3x3<span class="tag">Anton</span><span class="tag">Rank</span></label><a class="ask-ai" href="#" data-question="Anton 5.6 #2(d): Compute the rank and nullity of A=[[1,2,0],[0,1,1],[1,0,-1]]. Verify rank+nullity=n.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-rank-anton-5_6-13" data-kind="practice" data-topic="basis-rank" data-topic-label="Basis/Rank (Im/Kernel)"><label for="ap-rank-anton-5_6-13">Anton 5.6 #13 — Rank conditions for augmented matrix<span class="tag">Anton</span><span class="tag">Rank</span></label><a class="ask-ai" href="#" data-question="Anton 5.6 #13: For which values (r,s) does the matrix [[1,0,0],[0,1,0],[0,0,1],[r,s,1]] have rank 1 or 2? Find those values.">Ask AI</a></li>
                 </ul>
 
                 <h3>Coordinate Transformations</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-coord-lect-18-2" data-topic="transformations" data-topic-label="Transformations"><label for="ap-coord-lect-18-2">Lecture 18: Example 18.2 — Coordinate vectors relative to a basis</label><a class="ask-ai" href="https://chat.openai.com/?q=Coordinate%20vectors%20relative%20to%20a%20basis%20example" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-coord-lect-18-5" data-topic="transformations" data-topic-label="Transformations"><label for="ap-coord-lect-18-5">Lecture 18: Example 18.5 — Transition matrices between bases</label><a class="ask-ai" href="https://chat.openai.com/?q=Transition%20matrices%20between%20bases%20example" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-coord-lect-18-2" data-kind="practice" data-topic="transformations" data-topic-label="Transformations"><label for="ap-coord-lect-18-2">Lecture 18: Example 18.2 — Coordinate vectors relative to a basis<span class="tag">Lecture</span><span class="tag">Coordinates</span></label><a class="ask-ai" href="#" data-question="Find the coordinate vector of v relative to a basis S in R^n (as in Lecture 18 Example 18.2). Provide an illustrative computation.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-coord-lect-18-5" data-kind="practice" data-topic="transformations" data-topic-label="Transformations"><label for="ap-coord-lect-18-5">Lecture 18: Example 18.5 — Transition matrices between bases<span class="tag">Lecture</span><span class="tag">Change of Basis</span></label><a class="ask-ai" href="#" data-question="Construct the transition matrix between two bases S and T for R^n and use it to convert coordinates (Lecture 18 Example 18.5). Show a concrete example.">Ask AI</a></li>
                 </ul>
 
                 <h3>Eigenvalues & Eigenvectors</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-eig-anton-7_1-2a" data-topic="eigen" data-topic-label="Eigenvalues/Eigenvectors"><label for="ap-eig-anton-7_1-2a">Anton 7.1 #2(a) — Eigenvalues and eigenvectors</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%207.1%20Problem%202(a)%20eigenvalues%20and%20eigenvectors" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-eig-strang-6_1-5" data-topic="eigen" data-topic-label="Eigenvalues/Eigenvectors"><label for="ap-eig-strang-6_1-5">Strang 6.1 #5 — Eigenvalues via trace and determinant</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%206.1%20Problem%205%20eigenvalues%20trace%20determinant" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-eig-anton-7_1-2a" data-kind="practice" data-topic="eigen" data-topic-label="Eigenvalues/Eigenvectors"><label for="ap-eig-anton-7_1-2a">Anton 7.1 #2(a) — Eigenvalues of [[2,1],[1,2]]<span class="tag">Anton</span><span class="tag">Eigen</span></label><a class="ask-ai" href="#" data-question="Anton 7.1 #2(a): Find eigenvalues of A=[[2,1],[1,2]]. Also give eigenvectors if possible.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-eig-strang-6_1-5" data-kind="practice" data-topic="eigen" data-topic-label="Eigenvalues/Eigenvectors"><label for="ap-eig-strang-6_1-5">Strang 6.1 #5 — Eigenvalues/eigenvectors of [[1,1],[1,1]] and [[1,2],[2,4]]<span class="tag">Strang</span><span class="tag">Eigen</span></label><a class="ask-ai" href="#" data-question="Strang 6.1 #5: Compute eigenvalues and eigenvectors of A1=[[1,1],[1,1]] and A2=[[1,2],[2,4]]. Discuss rank and diagonalizability.">Ask AI</a></li>
                 </ul>
 
                 <h3>Diagonalization</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-diag-anton-7_2-3" data-topic="diagonalization" data-topic-label="Diagonalization"><label for="ap-diag-anton-7_2-3">Anton 7.2 #3 — Find P that diagonalizes A</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%207.2%20Problem%203%20diagonalize%20matrix" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-diag-strang-6_2-18" data-topic="diagonalization" data-topic-label="Diagonalization"><label for="ap-diag-strang-6_2-18">Strang 6.2 #18 — Diagonalization and matrix powers</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%206.2%20Problem%2018%20diagonalization%20matrix%20powers" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-diag-anton-7_2-3" data-kind="practice" data-topic="diagonalization" data-topic-label="Diagonalization"><label for="ap-diag-anton-7_2-3">Anton 7.2 #3 — Diagonalizable? Provide P and P^{-1}AP<span class="tag">Anton</span><span class="tag">Diag</span></label><a class="ask-ai" href="#" data-question="Anton 7.2 #3: Determine whether the given matrix (from the exercise) is diagonalizable. If so, find P that diagonalizes A and compute P^{-1}AP.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-diag-strang-6_2-18" data-kind="practice" data-topic="diagonalization" data-topic-label="Diagonalization"><label for="ap-diag-strang-6_2-18">Strang 6.2 #18 — A^k via diagonalization for [[0.8,0.3],[0.2,0.7]]<span class="tag">Strang</span><span class="tag">Powers</span></label><a class="ask-ai" href="#" data-question="Strang 6.2 #18: Diagonalize A=[[.8,.3],[.2,.7]] and find A^k=SΛ^kS^{-1}. Explain the limit as k→∞.">Ask AI</a></li>
                 </ul>
 
                 <h3>Orthogonality & Projections</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-ortho-anton-6_1-10" data-topic="orthogonality" data-topic-label="Orthogonality"><label for="ap-ortho-anton-6_1-10">Anton 6.1 #10 — Inner product properties</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%206.1%20Problem%2010%20inner%20product%20properties" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-ortho-anton-6_3-2" data-topic="orthogonality" data-topic-label="Orthogonality"><label for="ap-ortho-anton-6_3-2">Anton 6.3 #2 — Orthogonal/Orthonormal sets</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%206.3%20Problem%202%20orthonormal%20sets" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-proj-strang-4_2-5" data-topic="projections" data-topic-label="Orthogonal Projections"><label for="ap-proj-strang-4_2-5">Strang 4.2 #5 — Projection matrices</label><a class="ask-ai" href="https://chat.openai.com/?q=Strang%204.2%20Problem%205%20projection%20matrix%20P%20=%20A(A^T%20A)^{-1}A^T" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-ortho-anton-6_1-10" data-kind="practice" data-topic="orthogonality" data-topic-label="Orthogonality"><label for="ap-ortho-anton-6_1-10">Anton 6.1 #10 — Norm with given inner product<span class="tag">Anton</span><span class="tag">Inner Product</span></label><a class="ask-ai" href="#" data-question="Anton 6.1 #10: Using the given inner products on R^2, compute ||u|| for u=(1,2) in (a) Euclidean inner product and (b) inner product from A=[[1,2],[2,1]].">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-ortho-anton-6_3-2" data-kind="practice" data-topic="orthogonality" data-topic-label="Orthogonality"><label for="ap-ortho-anton-6_3-2">Anton 6.3 #2 — Orthonormal sets?<span class="tag">Anton</span><span class="tag">Orthonormal</span></label><a class="ask-ai" href="#" data-question="Anton 6.3 #2: Determine which given sets are orthonormal in R^n with the Euclidean inner product.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-proj-strang-4_2-5" data-kind="practice" data-topic="projections" data-topic-label="Orthogonal Projections"><label for="ap-proj-strang-4_2-5">Strang 4.2 #5 — Projection matrices onto lines<span class="tag">Strang</span><span class="tag">Projection</span></label><a class="ask-ai" href="#" data-question="Strang 4.2 #5: Compute projection matrices aa^T/(a^Ta) for a1=(-1,2,2) and a2=(2,2,-1). Multiply and explain why their product is zero.">Ask AI</a></li>
                 </ul>
 
                 <h3>Gram-Schmidt & Least Squares</h3>
                 <ul>
-                    <li><input type="checkbox" id="ap-gs-anton-6_3-17a" data-topic="gram-schmidt" data-topic-label="Gram-Schmidt"><label for="ap-gs-anton-6_3-17a">Anton 6.3 #17(a) — Gram-Schmidt to build orthonormal basis</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%206.3%20Problem%2017(a)%20Gram-Schmidt%20orthonormal%20basis" target="_blank" rel="noopener">Ask AI</a></li>
-                    <li><input type="checkbox" id="ap-lsq-anton-6_4-3c" data-topic="least-squares" data-topic-label="Least Squares"><label for="ap-lsq-anton-6_4-3c">Anton 6.4 #3(c) — Least squares line fit (normal equations)</label><a class="ask-ai" href="https://chat.openai.com/?q=Anton%206.4%20Problem%203(c)%20least%20squares%20normal%20equations" target="_blank" rel="noopener">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-gs-anton-6_3-17a" data-kind="practice" data-topic="gram-schmidt" data-topic-label="Gram-Schmidt"><label for="ap-gs-anton-6_3-17a">Anton 6.3 #17(a) — Gram–Schmidt in R⁴<span class="tag">Anton</span><span class="tag">GS</span></label><a class="ask-ai" href="#" data-question="Anton 6.3 #17(a): Apply Gram–Schmidt to u1=(1,1,0,0), u2=(0,1,1,0), u3=(0,0,1,1), u4=(1,0,1,0) to get an orthonormal basis.">Ask AI</a></li>
+                    <li><input type="checkbox" id="ap-lsq-anton-6_4-3c" data-kind="practice" data-topic="least-squares" data-topic-label="Least Squares"><label for="ap-lsq-anton-6_4-3c">Anton 6.4 #3(c) — Least squares line fit<span class="tag">Anton</span><span class="tag">Least Squares</span></label><a class="ask-ai" href="#" data-question="Anton 6.4 #3(c): For A=[[1,0],[0,1],[1,1]] and b=[1,1,1]^T, find the least squares solution x^* and the projection of b onto Col(A) via normal equations.">Ask AI</a></li>
                 </ul>
             </div>
         </div>
@@ -409,9 +431,9 @@
         }
 
         function updateProgressBar() {
-            const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
-            const totalCount = checkboxes.length;
-            const percentage = totalCount > 0 ? (checkedCount / totalCount) * 100 : 0;
+            const totalStudy = document.querySelectorAll('input[type="checkbox"][data-kind="study"]').length;
+            const checkedStudy = document.querySelectorAll('input[type="checkbox"][data-kind="study"]:checked').length;
+            const percentage = totalStudy > 0 ? (checkedStudy / totalStudy) * 100 : 0;
             progressBar.style.width = percentage + '%';
             progressBar.textContent = Math.round(percentage) + '%';
         }
@@ -493,6 +515,16 @@
                 URL.revokeObjectURL(url);
             });
         }
+
+        // Ask AI dynamic links
+        document.querySelectorAll('a.ask-ai').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const q = link.getAttribute('data-question') || link.previousElementSibling?.innerText || 'Linear Algebra question';
+                const url = 'https://chat.openai.com/?q=' + encodeURIComponent(q);
+                window.open(url, '_blank', 'noopener');
+            });
+        });
 
         if (importBtn && importFile) {
             importBtn.addEventListener('click', () => importFile.click());
