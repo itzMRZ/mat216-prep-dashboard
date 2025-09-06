@@ -139,34 +139,69 @@
 
     <!-- MAIN CHECKLIST -->
     <div class="study-block">
-        <h2>Main Study Checklist</h2>
-        <!-- BLOCK 1 -->
-        <h3>Block 1: The Computational Engine</h3>
+        <h2>Block 1: The Computational Engine (8 Hours)</h2>
+        <h3>Topic: Mastering Gauss-Jordan Elimination</h3>
         <ul>
-            <li><input type="checkbox" id="b1-t1"><label for="b1-t1">Watch videos on Gauss-Jordan & RREF.</label></li>
-            <li><input type="checkbox" id="b1-t2"><label for="b1-t2">Drill: Reduce a 3x4 matrix to RREF from memory.</label></li>
-            <li><input type="checkbox" id="b1-t3-s2"><label for="b1-t3-s2">Complete Practice Q1 (System of Equations). <b>(Q1 Covered)</b></label></li>
-            <li><input type="checkbox" id="b1-t4-s2"><label for="b1-t4-s2">Complete Practice Q5 (Linear Combination). <b>(Q5 Covered)</b></label></li>
-            <li><input type="checkbox" id="b1-t5-s2"><label for="b1-t5-s2">Complete Practice Q6 (Linear Independence). <b>(Q6 Covered)</b></label></li>
+            <li><input type="checkbox" id="b1-t1"><label for="b1-t1">Understand augmented matrix setup for a system.</label></li>
+            <li><input type="checkbox" id="b1-t2"><label for="b1-t2">Master the three elementary row operations.</label></li>
+            <li><input type="checkbox" id="b1-t3"><label for="b1-t3">Learn the difference between Row Echelon Form (REF) and RREF.</label></li>
+            <li><input type="checkbox" id="b1-t4"><label for="b1-t4">Practice: Solve a 3x4 system from scratch using Gauss-Jordan.</label></li>
         </ul>
-        <!-- BLOCK 2 -->
-        <h3>Block 2: The Conceptual Checks</h3>
+
+        <h3>Topic: Applying the Skill (Q1, Q5, Q6)</h3>
         <ul>
-            <li><input type="checkbox" id="b2-t1"><label for="b2-t1">Watch videos on Subspaces & Linear Transformations.</label></li>
-            <li><input type="checkbox" id="b2-t2"><label for="b2-t2">Complete Practice Q3 (Subspace). <b>(Q3 Covered)</b></label></li>
-            <li><input type="checkbox" id="b2-t3"><label for="b2-t3">Complete Practice Q7a (Linearity Check). <b>(Q7a Covered)</b></label></li>
+            <li><input type="checkbox" id="b1-t5"><label for="b1-t5">Watch: System of Linear Equations, Gauss-Jordan Method.</label></li>
+            <li><input type="checkbox" id="b1-t3-s2"><label for="b1-t3-s2">Practice Q1: Solve the system of equations from the exam. <b>(Q1 Covered)</b></label></li>
+            <li><input type="checkbox" id="b1-t7"><label for="b1-t7">Watch: Linear Combination, Independence and Dependence.</label></li>
+            <li><input type="checkbox" id="b1-t4-s2"><label for="b1-t4-s2">Practice Q5: Set up and solve the linear combination problem. <b>(Q5 Covered)</b></label></li>
+            <li><input type="checkbox" id="b1-t5-s2"><label for="b1-t5-s2">Practice Q6: Set up the homogeneous system and solve for linear independence. <b>(Q6 Covered)</b></label></li>
         </ul>
-        <!-- BLOCK 3 -->
-        <h3>Block 3: The Synthesis</h3>
+    </div>
+    
+    <div class="study-block">
+        <h2>Block 2: The Conceptual Checks (5 Hours)</h2>
+        <h3>Topic: Subspaces (Q3)</h3>
         <ul>
-            <li><input type="checkbox" id="b3-t1"><label for="b3-t1">Watch videos on Image, Kernel, & Fundamental Subspaces.</label></li>
-            <li><input type="checkbox" id="b3-t2-s3"><label for="b3-t2-s3">Complete Practice Q7b (Basis of Image). <b>(Q7b Covered)</b></label></li>
+            <li><input type="checkbox" id="b2-t1"><label for="b2-t1">Watch: Linear Subspaces - 01 & 02.</label></li>
+            <li><input type="checkbox" id="b2-t1b"><label for="b2-t1b">Memorize: The 3 conditions for a subspace (zero vector, closure under addition, closure under scalar mult.).</label></li>
+            <li><input type="checkbox" id="b2-t1c"><label for="b2-t1c">Practice: Write the proof for V = {0} being a subspace.</label></li>
+            <li><input type="checkbox" id="b2-t2"><label for="b2-t2">Practice: Find a counterexample for the det(A)=0 problem. <b>(Q3 Covered)</b></label></li>
         </ul>
-        <!-- BLOCK 4 -->
-        <h3>Block 4: The Safety Net</h3>
+
+        <h3>Topic: Linearity of Transformations (Q7a)</h3>
         <ul>
+            <li><input type="checkbox" id="b2-t5"><label for="b2-t5">Watch: Linear Transformations.</label></li>
+            <li><input type="checkbox" id="b2-t6"><label for="b2-t6">Memorize: The 2 properties of linearity (T(u+v) = T(u)+T(v) and T(cu) = cT(u)).</label></li>
+            <li><input type="checkbox" id="b2-t3"><label for="b2-t3">Practice Q7a: Find a numerical counterexample using the absolute value function. <b>(Q7a Covered)</b></label></li>
+        </ul>
+    </div>
+    
+    <div class="study-block">
+        <h2>Block 3: The Synthesis (5 Hours)</h2>
+        <h3>Topic: Basis, Dimension, and Fundamental Subspaces (Q7b)</h3>
+        <ul>
+            <li><input type="checkbox" id="b3-t1"><label for="b3-t1">Watch: Image and Kernel of a Linear Transformation.</label></li>
+            <li><input type="checkbox" id="b3-t1b"><label for="b3-t1b">Watch: Four Fundamental Subspaces (Row/Column, Null/Left Null).</label></li>
+            <li><input type="checkbox" id="b3-t3"><label for="b3-t3">Practice Step 1 (Q7b): Find the Standard Matrix for the transformation T.</label></li>
+            <li><input type="checkbox" id="b3-t4"><label for="b3-t4">Practice Step 2 (Q7b): Use Gauss-Jordan (from Block 1) to find the RREF of the matrix.</label></li>
+            <li><input type="checkbox" id="b3-t2-s3"><label for="b3-t2-s3">Practice Step 3 (Q7b): Identify pivot columns and find the basis for the Image (Column Space). <b>(Q7b Covered)</b></label></li>
+            <li><input type="checkbox" id="b3-t6"><label for="b3-t6">Practice: Find the basis for the Kernel (Null Space) of the same matrix.</label></li>
+        </ul>
+    </div>
+    
+    <div class="study-block">
+        <h2>Block 4: The Safety Net & Final Review (2 Hours)</h2>
+        <h3>Topic: Final Topics (Q2, Q4)</h3>
+        <ul>
+            <li><input type="checkbox" id="b4-t1a"><label for="b4-t1a">Watch: General Vector Spaces - 01.</label></li>
+            <li><input type="checkbox" id="b4-t1b"><label for="b4-t1b">Review Q2: Understand why the 1*u = u axiom fails for the given operation.</label></li>
+            <li><input type="checkbox" id="b4-t1c"><label for="b4-t1c">Review Q4: Write a one-sentence physical interpretation for linear combination and span.</label></li>
             <li><input type="checkbox" id="b4-t1"><label for="b4-t1">Complete Practice Q2 & Q4 (Theory). <b>(Q2/Q4 Covered)</b></label></li>
-            <li><input type="checkbox" id="b4-t2"><label for="b4-t2">Final Task: Complete a timed (1hr 20min) mock exam.</label></li>
+        </ul>
+        <h3>Topic: Final Prep</h3>
+        <ul>
+            <li><input type="checkbox" id="b4-t2"><label for="b4-t2">Final Task: Do a timed (1hr 20min) mock exam using the original paper.</label></li>
+            <li><input type="checkbox" id="b4-t5"><label for="b4-t5">Final Task: Identify your 5 strongest questions and review any weak points.</label></li>
         </ul>
     </div>
     
